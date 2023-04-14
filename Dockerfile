@@ -1,13 +1,13 @@
 
-FROM alpine
-
-RUN addgroup -S nonroot && adduser -S nonroot -G nonroot
-
-USER nonroot
-
 FROM python:3.9
 
+RUN useradd -ms /bin/bash titusvm
+
 WORKDIR /code
+
+RUN chown -R titusvm:titusvm /code
+
+USER titusvm
 
 COPY ./setup.py /code/setup.py
 
