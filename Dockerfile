@@ -1,8 +1,13 @@
-FROM python:3.9
 
 FROM alpine
 
+RUN addgroup -S nonroot && adduser -S nonroot -G nonroot
+
+USER nonroot
+
 ENTRYPOINT ["id"]
+
+FROM python:3.9
 
 WORKDIR /code
 
